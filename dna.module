@@ -86,7 +86,7 @@
 
         $final_helix = implode('', $second_helix);
         $_SESSION['result'] = $final_helix;
-        $_SESSION['input'] = $dna;
+        $_SESSION['input'] = $input;
         $form_state['redirect'] = 'dna-success';
 
     }
