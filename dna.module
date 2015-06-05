@@ -1,0 +1,42 @@
+<?php
+
+    function dna_menu() {
+        $items = array();
+        $items['cipher'] = array(
+            'title' => 'DNA module',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('dna_form'),
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+
+        $items['dna-success'] = array(
+            'title' = 'DNA Success',
+            'page callback' => 'dna_success',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
+        );
+
+        return $items;
+    }
+
+    function dna_form() {
+        $form['dna'] = array(
+            '#title' => 'Your half of a DNA helix',
+            '#type' => 'textfield',
+            '#description' => t('Please enter your DNA sequence'),
+            '#required' => TRUE,
+        );
+
+        $form['submit'] = array(
+            '#type' => 'submit',
+            '#value' => 'Sequence',
+        );
+
+        return $form;
+    }
+
+    function dna_form_submit($form, &$form_state) {
+        $dna = $form_state['values']['dna'];
+        
+    }
