@@ -21,7 +21,7 @@
     }
 
     function dna_form() {
-        $form['dna'] = array(
+        $form['sequence'] = array(
             '#title' => 'Your half of a DNA helix',
             '#type' => 'textfield',
             '#description' => t('Please enter your DNA sequence'),
@@ -36,7 +36,7 @@
         return $form;
     }
 
-    function dna_form_submit($form, &$form_state) {
-        $dna = $form_state['values']['dna'];
-
-    }
+    // function dna_form_submit($form, &$form_state) {
+    //     $dna = $form_state['values']['dna'];
+    //
+    // }
