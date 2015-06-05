@@ -25,6 +25,7 @@
             '#title' => 'Your half of a DNA helix',
             '#type' => 'textfield',
             '#description' => t('Please enter your DNA sequence'),
+            '#element_validate' => array('element_validate_ATGC'),
             '#required' => TRUE,
         );
 
@@ -34,6 +35,12 @@
         );
 
         return $form;
+    }
+
+    function element_validate_ATGC($element) {
+        if(preg_match("/[^ACGT]/", $element['#value'])) {
+            form_error($element, t('Input can only contain A C G T'));
+        }
     }
 
     function sequence_dna($input) {
@@ -60,7 +67,8 @@
 
 
     function dna_form_submit($form, &$form_state) {
-        $dna = str_replace(' ', '', strtoupper($form_state['values']['dna']));
+        $input = str_replace(' ', '', strtoupper($form_state['values']['dna']));
+        $dna = str_split($input);
 
         $nucleotides = array(
             'A' => 'T',
@@ -75,6 +83,15 @@
             }
         }
 
-        return implode('', $second_helix);
+        $final_helix = implode('', $second_helix);
+        $_SESSION['result'] = $final_helix;
+        $_SESSION['input'] = $dna;
+        $form_state['redirect'] = 'dna_success';
 
+    }
+
+    function dna_success() {
+        $result = $_SESSION['result'];
+        $original_input = $_SESSION['input'];
+        return "<p>For your input of $original_input, the other half of your helix would be: $result</p>";
     }
