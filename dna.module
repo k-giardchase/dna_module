@@ -69,6 +69,7 @@
     function dna_form_submit($form, &$form_state) {
         $input = str_replace(' ', '', strtoupper($form_state['values']['sequence']));
         $dna = str_split($input);
+        $second_helix = array();
 
         $nucleotides = array(
             'A' => 'T',
@@ -86,7 +87,7 @@
         $final_helix = implode('', $second_helix);
         $_SESSION['result'] = $final_helix;
         $_SESSION['input'] = $dna;
-        $form_state['redirect'] = 'dna_success';
+        $form_state['redirect'] = 'dna-success';
 
     }
 
