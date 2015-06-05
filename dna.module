@@ -46,11 +46,13 @@
             'G' => 'C',
         );
 
+        $second_helix = array();
+
         if($dna === 'A') {
             array_push($second_helix, 'T');
         }
 
-        $second_helix = array();
+
         //
         // foreach($dna as $nucleotide) {
         //     if($nucleotides[$nucleotide]) {
