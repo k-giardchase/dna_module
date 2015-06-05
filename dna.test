@@ -68,7 +68,7 @@ class DNAFunctionalTests extends DrupalWebTestCase {
         //set up what values to send to test
         $info = array();
         $info['sequence'] = "AACCGG";
-        $this->drupalPost('dna-success', $info, t('Sequence'));
+        $this->drupalPost('dna', $info, t('Sequence'));
         //perform the drupal post with those settings on the right button
     }
 
