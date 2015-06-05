@@ -37,8 +37,9 @@
     }
 
     function sequence_dna($input) {
-        $dna = str_replace(' ', '', strtoupper($input));
-
+        $dna = str_split(str_replace(' ', '', strtoupper($input)));
+        $second_helix = array();
+        
         $nucleotides = array(
             'A' => 'T',
             'C' => 'G',
@@ -46,20 +47,12 @@
             'G' => 'C',
         );
 
-        $second_helix = array();
-
-        if($dna === 'A') {
-            array_push($second_helix, 'T');
+        foreach($dna as $nucleotide) {
+            if($nucleotides[$nucleotide]) {
+                array_push($second_helix, $nucleotides[$nucleotide]);
+            }
         }
 
-
-        //
-        // foreach($dna as $nucleotide) {
-        //     if($nucleotides[$nucleotide]) {
-        //         array_push($second_helix, $nucleotides[$nucleotide]);
-        //     }
-        // }
-        //
         return implode('', $second_helix);
 
     }
