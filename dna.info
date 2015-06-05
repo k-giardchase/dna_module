@@ -3,3 +3,5 @@ description = A module that completes the second half of a DNA helix based off o
 package = Epicodus Examples
 core = 7.x
 files[] = dna.module
+files[] = dna.test
+dependencies[] = simpletest

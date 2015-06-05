@@ -36,7 +36,42 @@
         return $form;
     }
 
-    // function dna_form_submit($form, &$form_state) {
-    //     $dna = $form_state['values']['dna'];
-    //
-    // }
+    function sequence_dna($input) {
+        $dna = str_replace(' ', '', strtoupper($input));
+
+        $nucleotides = array(
+            'A' => 'T',
+            'C' => 'G',
+            'T' => 'A',
+            'G' => 'C',
+        );
+
+        if($dna === 'A') {
+            array_push($second_helix, 'T');
+        }
+
+        $second_helix = array();
+        //
+        // foreach($dna as $nucleotide) {
+        //     if($nucleotides[$nucleotide]) {
+        //         array_push($second_helix, $nucleotides[$nucleotide]);
+        //     }
+        // }
+        //
+        return implode('', $second_helix);
+
+    }
+
+
+
+    function dna_form_submit($form, &$form_state) {
+        $dna = str_replace(' ', '', strtoupper($form_state['values']['dna']));
+
+        $nucleotides = array(
+            'A' => 'T',
+            'C' => 'G',
+            'T' => 'A',
+            'G' => 'C',
+        );
+
+    }
