@@ -68,7 +68,7 @@ class DNAFunctionalTests extends DrupalWebTestCase {
         $this->drupalLogin($user);
 
         $info = array();
-        $info['title'] = 'DNA Success',
+        $info['title'] = "DNA Success";
         $info['body[und][0][value]'] = "Here is the other half of your helix: AATTGG";
         $this->drupalPost('node/add/page', $info, t('Save'));
         $path['source'] = 'node/1';

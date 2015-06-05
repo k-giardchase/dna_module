@@ -39,7 +39,7 @@
     function sequence_dna($input) {
         $dna = str_split(str_replace(' ', '', strtoupper($input)));
         $second_helix = array();
-        
+
         $nucleotides = array(
             'A' => 'T',
             'C' => 'G',
@@ -68,5 +68,13 @@
             'T' => 'A',
             'G' => 'C',
         );
+
+        foreach($dna as $nucleotide) {
+            if($nucleotides[$nucleotide]) {
+                array_push($second_helix, $nucleotides[$nucleotide]);
+            }
+        }
+
+        return implode('', $second_helix);
 
     }
