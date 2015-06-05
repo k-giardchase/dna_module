@@ -11,7 +11,7 @@
         );
 
         $items['dna-success'] = array(
-            'title' = 'DNA Success',
+            'title' => 'DNA Success',
             'page callback' => 'dna_success',
             'access callback' => TRUE,
             'type' => MENU_CALLBACK,
