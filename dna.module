@@ -2,7 +2,7 @@
 
     function dna_menu() {
         $items = array();
-        $items['cipher'] = array(
+        $items['dna'] = array(
             'title' => 'DNA module',
             'page callback' => 'drupal_get_form',
             'page arguments' => array('dna_form'),
@@ -38,5 +38,5 @@
 
     function dna_form_submit($form, &$form_state) {
         $dna = $form_state['values']['dna'];
-        
+
     }
