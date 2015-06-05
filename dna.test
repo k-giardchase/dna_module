@@ -26,3 +26,5 @@ class DNATestCase extends DrupalUnitTestCase
         $this->assertEqual($result, $expected_output, $description);
     }
 }
+
+?>
