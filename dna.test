@@ -43,6 +43,12 @@ class DNATestCase extends DrupalUnitTestCase
         $expected_output = 'TACG';
         $this->assertEqual($result, $expected_output, $description);
 
+        $description = 'A non-friendly input is entered of aT gcAA and a friendly input is returned.';
+        $input = 'aT gcAA';
+        $result = sequence_dna($input);
+        $expected_output = 'TACGTT';
+        $this->assertEqual($result, $expected_output, $description);
+
     }
 }
 
