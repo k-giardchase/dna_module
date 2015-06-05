@@ -1,6 +1,6 @@
 <?php
 
-class DNATestCase extends DrupalUnitTestCase
+class DNAUnitTestCase extends DrupalUnitTestCase
 {
 
     public static function getInfo()
@@ -12,10 +12,10 @@ class DNATestCase extends DrupalUnitTestCase
         );
     }
 
-    public function setUp(){
-         drupal_load('module', 'dna');
-         parent::setUp();
-     }
+    // public function setUp(){
+    //      drupal_load('module', 'dna');
+    //      parent::setUp();
+    //  }
 
     function testDNAModule()
     {
@@ -43,12 +43,53 @@ class DNATestCase extends DrupalUnitTestCase
         $expected_output = 'TACG';
         $this->assertEqual($result, $expected_output, $description);
 
-        $description = 'A non-friendly input is entered of aT gcAA and a friendly input is returned.';
+        $description = 'A non-friendly input is entered of aT gcAA and a friendly input TACGTT is returned.';
         $input = 'aT gcAA';
         $result = sequence_dna($input);
         $expected_output = 'TACGTT';
         $this->assertEqual($result, $expected_output, $description);
 
+    }
+}
+
+class DNAFunctionalTests extends DrupalWebTestCase {
+
+    public static function getInfo() {
+        return array(
+            'name' => 'DNA Functional Tests',
+            'description' => 'Tests accessibility for the DNA module',
+            'group' => 'Epicodus Examples Tests',
+        );
+    }
+
+    public function setUp() {
+        parent::setUp(array('dna'));
+        $user = $this->drupalCreateAdminUser();
+        $this->drupalLogin($user);
+
+        $info = array();
+        $info['title'] = 'DNA Success',
+        $info['body[und][0][value]'] = "Here is the other half of your helix: AATTGG";
+        $this->drupalPost('node/add/page', $info, t('Save'));
+        $path['source'] = 'node/1';
+        $path['alias'] = 'dna_success';
+        path_save($path);
+    }
+
+    public function drupalCreateAdminUser(array $permissions = array()) {
+        $roles = user_roles();
+        $index = array_search('administrator', $roles);
+        $user = $this->drupalCreateUser($permissions);
+        $user->roles[$index] = 'administrator';
+        return user_save($user);
+    }
+
+    public function testDNASequenceSubmission() {
+        $user = $this->drupalCreateAdminUser();
+        $this->drupalLogin($user);
+        $form_state['values']['sequence'] = 'TTAACC';
+        drupal_form_submit('dna_form', $form_state);
+        $this->assertText('DNA Success', 'Here is the other half of your helix: AATTGG');
     }
 }
 
