@@ -12,6 +12,11 @@ class DNATestCase extends DrupalUnitTestCase
         );
     }
 
+    public function setUp(){
+         drupal_load('module', 'dna');
+         parent::setUp();
+     }
+
     function testDNAModule()
     {
         $description = 'An A nucleotide is entered and a T is returned.';
