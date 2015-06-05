@@ -31,6 +31,12 @@ class DNATestCase extends DrupalUnitTestCase
         $expected_output = 'TA';
         $this->assertEqual($result, $expected_output, $description);
 
+        $description = 'An ATG nucleotide is entered and TAC is returned.';
+        $input = 'ATC';
+        $result = sequence_dna($input);
+        $expected_output = 'TAC';
+        $this->assertEqual($result, $expected_output, $description);
+
     }
 }
 
