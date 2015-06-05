@@ -64,16 +64,23 @@ class DNAFunctionalTests extends DrupalWebTestCase {
 
     public function setUp() {
         parent::setUp(array('dna'));
+
+        //set up what values to send to test
+        $info = array();
+        $info['sequence'] = "AACCGG";
+        $this->drupalPost('dna-success', $info, t('Sequence'));
+        //perform the drupal post with those settings on the right button
     }
 
     /* I am completely lost past this point */
 
     public function testDNASequenceSubmission() {
 
-        $info = array();
-        $info['[values][sequence]'] = "AACCGG";
-        $info['body[und][0][value]'] = "For your input of AACCGG, the other half of your helix would be: TTGGCC";
-        $this->drupalPost('dna-success', $info, t('Sequence'));
+        //drupalGet to the results page of your module
+        $this->drupalGet('dna-success');
+        //assert that the texts equals what it should
+
+
         $this->assertText('For your input of AACCGG, the other half of your helix would be: TTGGCC', 'The Text on the page is correct');
     }
 }
